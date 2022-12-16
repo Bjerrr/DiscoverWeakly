@@ -1,0 +1,64 @@
+:root{
+    --main: black;
+    --light: #828282;
+    --green: #1DB954;
+}
+
+body{
+    font-family: 'DM Sans', sans-serif;
+}
+
+header{
+    display: flex;
+    padding: 10px;
+}
+
+h1{
+    font-size: 100px;
+    color: var(--main);
+    margin: auto;
+    text-shadow: 1px 1px 4px var(--light);
+}
+
+#container{
+    box-shadow: var(--green) 0px 13px 27px -5px, var(--green) 0px 8px 16px -8px;
+    /* box-shadow: var(--green) 0px 5px 15px; */
+    border-radius: 15px;
+    padding: 70px 0 70px 0;
+    margin: 5% 200px 0 200px;
+    background-color: var(--main);
+
+}
+
+#text-box{
+    margin: auto;
+    width: 800px;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    /* background-color: white; */
+    padding: 20px;
+    border-radius: 45px;
+}
+
+.textfield{
+    margin: auto;
+    width: 300px;
+    height: 50px;
+    border: 1px solid var(--green);
+    border-radius: 30px;
+}
+
+#arrow{
+    color: var(--green);
+}
+
+#play-btn{
+    color: white;
+}
+
+#play-box{
+    margin-top: 100px;
+    display: flex;
+    justify-content: space-around;
+}
