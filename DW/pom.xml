@@ -8,18 +8,18 @@
 		<version>3.0.0</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.DW</groupId>
-	<artifactId>DiscoverWeakly</artifactId>
+	<groupId>com.dw</groupId>
+	<artifactId>DW</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>DiscoverWeakly</name>
-	<description>Demo project for Spring Boot</description>
+	<name>DW</name>
+	<description>School project</description>
 	<properties>
 		<java.version>17</java.version>
 	</properties>
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter</artifactId>
+			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
 
 		<dependency>
