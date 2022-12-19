@@ -4,9 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3f7f6155-aa14-432e-8cf2-6433d0fbbe8d" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/DW/src/main/java/com/dw/DW/searchSuggestion/Locations.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DW/src/main/java/com/dw/DW/searchSuggestion/SearchSuggestion.java" afterDir="false" />
+    <list default="true" id="2f79b5f2-3115-48a7-be0d-09cf4d97e2ba" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/DW/src/main/java/com/dw/DW/stopLockup/StopLookup.java" beforeDir="false" afterPath="$PROJECT_DIR$/DW/src/main/java/com/dw/DW/stopLockup/StopLookup.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DW/src/main/java/com/dw/DW/stopLockup/stops.txt" beforeDir="false" afterPath="$PROJECT_DIR$/DW/src/main/java/com/dw/DW/stopLockup/Stops.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -39,16 +39,16 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "project.structure.last.edited": "Project",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.2"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;
   }
-}]]></component>
-  <component name="RunManager">
+}</component>
+  <component name="RunManager" selected="Application.StopLookup">
     <configuration name="SearchSuggestion" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.dw.DW.searchSuggestion.SearchSuggestion" />
       <module name="DW" />
@@ -62,8 +62,35 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="StopLookup" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.dw.DW.stopLockup.StopLookup" />
+      <module name="DW" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.dw.DW.stopLockup.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="JetRunConfigurationType">
+      <module name="DW" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
+      <module name="DW" />
+      <option name="filePath" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.StopLookup" />
         <item itemvalue="Application.SearchSuggestion" />
       </list>
     </recent_temporary>

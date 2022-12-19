@@ -8,7 +8,7 @@ public class StopLookup {
     public String getStopID (String stopName) throws IOException {
         try {
 
-            File fileDir = new File("DW/src/main/java/com/dw/DW/stopLockup/stops.txt");
+            File fileDir = new File("DW/src/main/java/com/dw/DW/stopLockup/Stops.txt");
 
             BufferedReader reader = new BufferedReader(
                     new InputStreamReader(new FileInputStream(fileDir), "UTF-8"));
