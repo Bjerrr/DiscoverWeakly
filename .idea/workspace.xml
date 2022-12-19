@@ -5,8 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2f79b5f2-3115-48a7-be0d-09cf4d97e2ba" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/DW/src/main/java/com/dw/DW/stopLockup/StopLookup.java" beforeDir="false" afterPath="$PROJECT_DIR$/DW/src/main/java/com/dw/DW/stopLockup/StopLookup.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DW/src/main/java/com/dw/DW/stopLockup/stops.txt" beforeDir="false" afterPath="$PROJECT_DIR$/DW/src/main/java/com/dw/DW/stopLockup/Stops.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/DW/src/main/java/com/dw/DW/fetchTrip/FetchTrip.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -48,7 +48,20 @@
     &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;
   }
 }</component>
-  <component name="RunManager" selected="Application.StopLookup">
+  <component name="RunManager" selected="Application.FetchTrip">
+    <configuration name="FetchTrip" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.dw.DW.fetchTrip.FetchTrip" />
+      <module name="DW" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.dw.DW.fetchTrip.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="SearchSuggestion" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.dw.DW.searchSuggestion.SearchSuggestion" />
       <module name="DW" />
@@ -90,6 +103,7 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.FetchTrip" />
         <item itemvalue="Application.StopLookup" />
         <item itemvalue="Application.SearchSuggestion" />
       </list>
