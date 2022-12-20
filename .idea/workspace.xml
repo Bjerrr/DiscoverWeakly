@@ -75,6 +75,19 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="JSonParseTest" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.dw.DW.JSonParseTest" />
+      <module name="DW" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.dw.DW.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="SearchSuggestion" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.dw.DW.searchSuggestion.SearchSuggestion" />
       <module name="DW" />
@@ -117,6 +130,7 @@
     <recent_temporary>
       <list>
         <item itemvalue="Application.DwApplication" />
+        <item itemvalue="Application.JSonParseTest" />
         <item itemvalue="Application.FetchTrip" />
         <item itemvalue="Application.StopLookup" />
         <item itemvalue="Application.SearchSuggestion" />
