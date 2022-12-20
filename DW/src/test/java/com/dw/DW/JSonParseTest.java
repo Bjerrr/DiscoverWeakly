@@ -1,6 +1,7 @@
 package com.dw.DW;
 
-import com.dw.DW.json_models.trip.JsonTrip;
+import com.dw.DW.GENERATED_POJOS.JsonTrip.JsonTripRoot;
+import com.dw.DW.fetchTrip.FetchTrip;
 import com.google.gson.Gson;
 import com.google.gson.stream.JsonReader;
 
@@ -12,20 +13,13 @@ public class JSonParseTest {
     void run() {
         gson = new Gson();
 
-        JsonTrip jsonTrip = AssertJsonSuccess("DW/src/test/resources/trip.json", JsonTrip.class);
-        String originName = jsonTrip.Trip.get(0).LegList.Leg.get(0).Origin.name;
-        System.out.println(originName);
+        String rawJsonTrip = new FetchTrip().getTrip("Hässleholm Centralstation", "Malmö Centralstation");
+        System.out.println(rawJsonTrip);
 
-        //AssertJsonSuccess("DW/src/test/resources/trip.json", Json);
-    }
+        JsonTripRoot jsonTripObject = gson.fromJson(rawJsonTrip, JsonTripRoot.class);
+        System.out.println(jsonTripObject);
 
-    private <T> T AssertJsonSuccess(String path, Class<T> tClass) {
-        T dataModel = jsonFileToObject(path, tClass);
-
-        assert dataModel != null;
-        System.out.println(dataModel);
-
-        return dataModel;
+        // String tripOriginName = jsonTripObject.getTrip().get(0).getOrigin().getName();
     }
 
     private <T> T jsonFileToObject(String filepath, Class<T> tClass) {
