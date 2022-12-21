@@ -3,6 +3,8 @@ package com.dw.DW;
 import com.dw.DW.GENERATED_POJOS.JsonTrip.JsonTripRoot;
 import com.dw.DW.GENERATED_POJOS.JsonTrip.Trip;
 import com.dw.DW.fetchTrip.FetchTrip;
+import com.dw.DW.playlistBuilder.PlaylistBuilder;
+import com.dw.DW.playlistBuilder.TimeCalculator;
 import com.dw.DW.searchSuggestion.SearchSuggestion;
 import com.google.gson.Gson;
 import org.springframework.boot.SpringApplication;
@@ -12,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
+import java.util.Timer;
 
 @SpringBootApplication
 @RestController
@@ -55,5 +58,19 @@ public class DwApplication {
 		SearchSuggestion suggestion = new SearchSuggestion(words);
 
 		return suggestion.suggest(query);
+	}
+
+	@GetMapping("/playlist")
+	public List<String> playlist(@RequestParam(value = "time", defaultValue = "2580") int query) {
+		PlaylistBuilder playlistBuilder = new PlaylistBuilder();
+		TimeCalculator timeCalculator = new TimeCalculator();
+		//query = timeCalculator.calculateTime(tid1, tid2);
+
+		return playlistBuilder.createPlaylist(query);
+	}
+
+	@GetMapping("/")
+	public void index() {
+
 	}
 }
