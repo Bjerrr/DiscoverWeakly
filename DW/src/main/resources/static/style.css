@@ -4,6 +4,14 @@
     --green: #1DB954;
 }
 
+.trip-label{
+    color: white;
+}
+
+input{
+    padding: 10px;
+}
+
 body{
     font-family: 'DM Sans', sans-serif;
 }
