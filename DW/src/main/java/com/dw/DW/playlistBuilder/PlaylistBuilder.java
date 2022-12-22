@@ -4,6 +4,7 @@ import com.dw.DW.GENERATED_POJOS.JsonTrip.JsonTripRoot;
 import com.dw.DW.GENERATED_POJOS.JsonTrip.Trip;
 import com.dw.DW.fetchTrip.FetchTrip;
 import com.google.gson.Gson;
+import com.google.gson.JsonArray;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -15,13 +16,22 @@ import java.net.URL;
 import java.sql.Time;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class PlaylistBuilder {
     static List<String> playlist = new ArrayList<>();
+    Random random = new Random();
 
     public List<String> createPlaylist(int timeLimit) {
+
+        String token = "BQDjtqX8Fg6I_vAbT--LgopvCdMiL-jx32gSPOLQE88csrJug1TLlj31fpByu-aiiRkew6XAs4yrBQt9HyqosXO-ZqsOri0QeSztLAT6nKocXDnx60XJmht4Z11lmplKra5odByDF7U5cqUJ2II6dPqyGKvpzVUQhlCLCQhDLOPym_39WczqR7xE3dOZxqvBe0HVpCNUhIaL0ZX0WTRzvEMW0EPzg6nieK-rX9e1OVRBjbKbsr9h";
+        String[] genres = getRandomGenres();
+        String genreQuery = genres[0];
+        for (int i = 1; i < 5; i++) {
+            genreQuery += "," + genres[i];
+        }
         try {
-            URL url = new URL("https://api.spotify.com/v1/search?q=Linkin+Park&type=track&access_token=BQDjtqX8Fg6I_vAbT--LgopvCdMiL-jx32gSPOLQE88csrJug1TLlj31fpByu-aiiRkew6XAs4yrBQt9HyqosXO-ZqsOri0QeSztLAT6nKocXDnx60XJmht4Z11lmplKra5odByDF7U5cqUJ2II6dPqyGKvpzVUQhlCLCQhDLOPym_39WczqR7xE3dOZxqvBe0HVpCNUhIaL0ZX0WTRzvEMW0EPzg6nieK-rX9e1OVRBjbKbsr9h");
+            URL url = new URL("https://api.spotify.com/v1/recommendations?limit=100&max_popularity=20&seed_genres=" + genreQuery + "&access_token=" + token);
             HttpURLConnection con = (HttpURLConnection) url.openConnection();
             con.setRequestProperty("accept", "application/json");
             InputStream responseStream = con.getInputStream();
@@ -29,13 +39,16 @@ public class PlaylistBuilder {
 
             int timeTotal = 0;
             String line;
+            String name = null;
 
             while ((line = bufferedReader.readLine()) != null) {
-                if (line.contains("duration")) {
+                if (line.contains("\"duration_ms\"")) {
                     timeTotal += Integer.parseInt(line.replaceAll("[^\\d.]", ""))/1000;
                     System.out.println(timeTotal + " of total: " + timeLimit);
-                } else if (line.contains("\"spotify\"")) {
-                    playlist.add(line.substring(line.indexOf("\"h")+1,line.length()-1));
+                } else if (line.contains("\"name\"")) {
+                    name = line.substring(line.indexOf(": \"")+3,line.length()-2);
+                } else if (line.contains("type") && line.contains("track")) {
+                    playlist.add(name);
                 } else if (timeTotal >= timeLimit) {
                     break;
                 }
@@ -62,5 +75,14 @@ public class PlaylistBuilder {
         for (int i = 0; i < playlist.size(); i++) {
             System.out.println(playlist.get(i));
         }
+    }
+
+    public String[] getRandomGenres() {
+        String[] list = {"acoustic","afrobeat","alt-rock","alternative","ambient","anime","black-metal","bluegrass","blues","bossanova","brazil","breakbeat","british","cantopop","chicago-house","children","chill","classical","club","comedy","country","dance","dancehall","death-metal","deep-house","detroit-techno","disco","disney","drum-and-bass","dub","dubstep","edm","electro","electronic","emo","folk","forro","french","funk","garage","german","gospel","goth","grindcore","groove","grunge","guitar","happy","hard-rock","hardcore","hardstyle","heavy-metal","hip-hop","holidays","honky-tonk","house","idm","indian","indie","indie-pop","industrial","iranian","j-dance","j-idol","j-pop","j-rock","jazz","k-pop","kids","latin","latino","malay","mandopop","metal","metal-misc","metalcore","minimal-techno","movies","mpb","new-age","new-release","opera","pagode","party","philippines-opm","piano","pop","pop-film","post-dubstep","power-pop","progressive-house","psych-rock","punk","punk-rock","r-n-b","rainy-day","reggae","reggaeton","road-trip","rock","rock-n-roll","rockabilly","romance","sad","salsa","samba","sertanejo","show-tunes","singer-songwriter","ska","sleep","songwriter","soul","soundtracks","spanish","study","summer","swedish","synth-pop","tango","techno","trance","trip-hop","turkish","work-out","world-music"};
+        String[] seeds = new String[5];
+        for (int i = 0; i < 5; i++) {
+            seeds[i] = list[random.nextInt(list.length)];
+        }
+        return seeds;
     }
 }

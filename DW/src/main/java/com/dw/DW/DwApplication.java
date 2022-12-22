@@ -6,6 +6,8 @@ import com.dw.DW.fetchTrip.FetchTrip;
 import com.dw.DW.playlistBuilder.PlaylistBuilder;
 import com.dw.DW.playlistBuilder.TimeCalculator;
 import com.dw.DW.searchSuggestion.SearchSuggestion;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.Gson;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -19,6 +21,10 @@ import java.util.Timer;
 @SpringBootApplication
 @RestController
 public class DwApplication {
+
+	PlaylistBuilder playlistBuilder = new PlaylistBuilder();
+	TimeCalculator timeCalculator = new TimeCalculator();
+	FetchTrip fetchTrip = new FetchTrip();
 
 	public static void main(String[] args) {
 		SpringApplication.run(DwApplication.class, args);
@@ -61,16 +67,23 @@ public class DwApplication {
 	}
 
 	@GetMapping("/playlist")
-	public List<String> playlist(@RequestParam(value = "time", defaultValue = "2580") int query) {
-		PlaylistBuilder playlistBuilder = new PlaylistBuilder();
-		TimeCalculator timeCalculator = new TimeCalculator();
-		//query = timeCalculator.calculateTime(tid1, tid2);
+	public String playlist(@RequestParam(value = "origin", defaultValue = "Malmö") String origin, @RequestParam(value = "destination", defaultValue = "Hässleholm") String destination) {
+		try {
+			String rawJson = fetchTrip.getTrip(origin, destination);
+			JsonTripRoot jsonRoot = new Gson().fromJson(rawJson, JsonTripRoot.class);
 
-		return playlistBuilder.createPlaylist(query);
-	}
+			Trip trip = jsonRoot.getTrip().get(0);
+			String tripDeparture = trip.getOrigin().getTime();
+			String tripArrival = trip.getDestination().getTime();
 
-	@GetMapping("/")
-	public void index() {
+			ObjectMapper objectMapper = new ObjectMapper();
+			String json = null;
+			json = objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(playlistBuilder.createPlaylist(timeCalculator.calculateTime(tripDeparture, tripArrival)));
 
+			return json;
+
+		} catch (JsonProcessingException e) {
+			throw new RuntimeException(e);
+		}
 	}
 }
