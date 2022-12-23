@@ -5,8 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2f79b5f2-3115-48a7-be0d-09cf4d97e2ba" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/DW/src/main/resources/static/script.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DW/src/main/java/com/dw/DW/DwApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/DW/src/main/java/com/dw/DW/DwApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DW/src/main/java/com/dw/DW/playlistBuilder/PlaylistBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/DW/src/main/java/com/dw/DW/playlistBuilder/PlaylistBuilder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DW/src/main/resources/static/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/DW/src/main/resources/static/index.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -114,19 +116,6 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration default="true" type="JetRunConfigurationType">
-      <module name="DW" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
-      <module name="DW" />
-      <option name="filePath" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <recent_temporary>
       <list>
         <item itemvalue="Application.DwApplication" />
@@ -140,7 +129,7 @@
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="3f7f6155-aa14-432e-8cf2-6433d0fbbe8d" name="Changes" comment="" />
+      <changelist id="2f79b5f2-3115-48a7-be0d-09cf4d97e2ba" name="Changes" comment="" />
       <created>1671196195382</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />

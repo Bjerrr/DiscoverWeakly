@@ -24,7 +24,7 @@ public class PlaylistBuilder {
 
     public List<String> createPlaylist(int timeLimit) {
 
-        String token = "BQDjtqX8Fg6I_vAbT--LgopvCdMiL-jx32gSPOLQE88csrJug1TLlj31fpByu-aiiRkew6XAs4yrBQt9HyqosXO-ZqsOri0QeSztLAT6nKocXDnx60XJmht4Z11lmplKra5odByDF7U5cqUJ2II6dPqyGKvpzVUQhlCLCQhDLOPym_39WczqR7xE3dOZxqvBe0HVpCNUhIaL0ZX0WTRzvEMW0EPzg6nieK-rX9e1OVRBjbKbsr9h";
+        String token = "BQDYh-TZNF9_r2JjwNRd4aT6rpahN4R1AK9KQlbjW_-VM-VJ2z0u4EXN0DKdTDxS8sk9dmJIf68fw1qNidrOTrxhazOT4SJVp9zTxSr6mAclzpxKTdb7skODV9TvoLx1Ve295GJYgyoMIoa_tgUoyjjQE0IGJcKB2bw93CMj1jM3SO2wahBB39N6tuIyVWqMWUterEzT9za40PBT9mpydqZEW_HusHjm9Q2DdKdcRrI-4oo1Vgf1";
         String[] genres = getRandomGenres();
         String genreQuery = genres[0];
         for (int i = 1; i < 5; i++) {
