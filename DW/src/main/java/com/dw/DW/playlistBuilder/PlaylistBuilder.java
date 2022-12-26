@@ -1,35 +1,40 @@
 package com.dw.DW.playlistBuilder;
 
-import com.dw.DW.GENERATED_POJOS.JsonTrip.JsonTripRoot;
-import com.dw.DW.GENERATED_POJOS.JsonTrip.Trip;
-import com.dw.DW.fetchTrip.FetchTrip;
-import com.google.gson.Gson;
-import com.google.gson.JsonArray;
-
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
 import java.net.URL;
-import java.sql.Time;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import java.util.concurrent.TimeUnit;
 
 public class PlaylistBuilder {
-    static List<String> playlist = new ArrayList<>();
-    Random random = new Random();
+    private static List<String> playlist = new ArrayList<>();
+    private String token;
+    private int timeTotal;
+    private final Random random = new Random();
+    private final Token tokenCreator = new Token();
 
     public List<String> createPlaylist(int timeLimit) {
-
-        String token = "BQDYh-TZNF9_r2JjwNRd4aT6rpahN4R1AK9KQlbjW_-VM-VJ2z0u4EXN0DKdTDxS8sk9dmJIf68fw1qNidrOTrxhazOT4SJVp9zTxSr6mAclzpxKTdb7skODV9TvoLx1Ve295GJYgyoMIoa_tgUoyjjQE0IGJcKB2bw93CMj1jM3SO2wahBB39N6tuIyVWqMWUterEzT9za40PBT9mpydqZEW_HusHjm9Q2DdKdcRrI-4oo1Vgf1";
+        playlist = new ArrayList<>();
         String[] genres = getRandomGenres();
+        token = tokenCreator.createToken();
+        timeTotal = 0;
+
+        while (timeLimit > timeTotal) {
+            addSongs(timeLimit,genres);
+        }
+
+        return playlist;
+    }
+
+    public void addSongs(int timeLimit, String[] genres) {
+
         String genreQuery = genres[0];
         for (int i = 1; i < 5; i++) {
             genreQuery += "," + genres[i];
         }
+
         try {
             URL url = new URL("https://api.spotify.com/v1/recommendations?limit=100&max_popularity=20&seed_genres=" + genreQuery + "&access_token=" + token);
             HttpURLConnection con = (HttpURLConnection) url.openConnection();
@@ -37,7 +42,6 @@ public class PlaylistBuilder {
             InputStream responseStream = con.getInputStream();
             BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(responseStream));
 
-            int timeTotal = 0;
             String line;
             String name = null;
 
@@ -53,27 +57,9 @@ public class PlaylistBuilder {
                     break;
                 }
             }
+
         } catch (IOException e) {
             throw new RuntimeException(e);
-        }
-        return playlist;
-    }
-
-    public static void main(String[] args) {
-        TimeCalculator timeCalculator = new TimeCalculator();
-        FetchTrip fetchTrip = new FetchTrip();
-
-        String rawJson = fetchTrip.getTrip("Malmö", "Hässleholm");
-        JsonTripRoot jsonRoot = new Gson().fromJson(rawJson, JsonTripRoot.class);
-
-        Trip trip = jsonRoot.getTrip().get(0);
-        String tripDeparture = trip.getOrigin().getTime();
-        String tripArrival = trip.getDestination().getTime();
-
-        PlaylistBuilder playlistBuilder = new PlaylistBuilder();
-        playlist = playlistBuilder.createPlaylist(timeCalculator.calculateTime(tripDeparture,tripArrival));
-        for (int i = 0; i < playlist.size(); i++) {
-            System.out.println(playlist.get(i));
         }
     }
 
