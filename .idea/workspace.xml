@@ -4,10 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2f79b5f2-3115-48a7-be0d-09cf4d97e2ba" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/DW/src/main/resources/static/script.js" afterDir="false" />
+    <list default="true" id="2f79b5f2-3115-48a7-be0d-09cf4d97e2ba" name="Changes" comment="Added /htmlTest endpoint to reah test.html.&#10;From test.html you can swap between test and test_2 pages.">
+      <change afterPath="$PROJECT_DIR$/DW/src/main/java/com/dw/DW/fetchTrip/json_model/Leg.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/DW/src/main/java/com/dw/DW/fetchTrip/json_model/PrettyTrip.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DW/src/main/java/com/dw/DW/playlistBuilder/PlaylistBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/DW/src/main/java/com/dw/DW/playlistBuilder/PlaylistBuilder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DW/src/main/java/com/dw/DW/DwApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/DW/src/main/java/com/dw/DW/DwApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DW/src/main/java/com/dw/DW/playlistBuilder/TimeCalculator.java" beforeDir="false" afterPath="$PROJECT_DIR$/DW/src/main/java/com/dw/DW/playlistBuilder/TimeCalculator.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/DW/src/main/resources/static/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/DW/src/main/resources/static/index.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -23,6 +25,11 @@
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="html_routing" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="MarkdownSettingsMigration">
@@ -37,6 +44,7 @@
     </option>
   </component>
   <component name="ProjectId" id="2IztMyaV9pl7hliIlOM04lAeRoh" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -45,11 +53,17 @@
   &quot;keyToString&quot;: {
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/Joel/_IntelliJProjects/da109a/DiscoverWeakly/DW/src/main/resources/static&quot;,
     &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
     &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
     &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;
   }
 }</component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Joel\_IntelliJProjects\da109a\DiscoverWeakly\DW\src\main\resources\static" />
+    </key>
+  </component>
   <component name="RunManager" selected="Application.DwApplication">
     <configuration name="DwApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.dw.DW.DwApplication" />
@@ -69,7 +83,7 @@
       <module name="DW" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.dw.DW.fetchTrip.*" />
+          <option name="PATTERN" value="com.dw.DW.fetchTrip.json_model.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -120,7 +134,7 @@
       <list>
         <item itemvalue="Application.DwApplication" />
         <item itemvalue="Application.JSonParseTest" />
-        <item itemvalue="Application.FetchTrip" />
+        <item itemvalue="Application.com.dw.DW.fetchTrip.FetchTrip" />
         <item itemvalue="Application.StopLookup" />
         <item itemvalue="Application.SearchSuggestion" />
       </list>
@@ -135,6 +149,14 @@
       <option name="presentableId" value="Default" />
       <updated>1671196195382</updated>
     </task>
+    <task id="LOCAL-00001" summary="Added /htmlTest endpoint to reah test.html.&#10;From test.html you can swap between test and test_2 pages.">
+      <created>1672651560577</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1672651560577</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -142,10 +164,27 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="json_from_endpoints" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
           </value>
         </entry>
       </map>
     </option>
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/DiscoverWeakly$DemoApplication.ic" NAME="DemoApplication Coverage Results" MODIFIED="1671185971071" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>com.DW.DiscoverWeakly.RestApi.*</FILTER>
+    </SUITE>
   </component>
 </project>

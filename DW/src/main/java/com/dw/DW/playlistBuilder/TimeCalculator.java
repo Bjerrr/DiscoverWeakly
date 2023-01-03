@@ -1,12 +1,10 @@
 package com.dw.DW.playlistBuilder;
 
-import java.text.ParseException;
 import java.time.LocalTime;
-import java.util.Date;
 
 public class TimeCalculator {
 
-    public int calculateTime(String departure, String arrival) {
+    public static int calculateTime(String departure, String arrival) {
 
         LocalTime aTime = LocalTime.parse(arrival);
         LocalTime dTime = LocalTime.parse(departure);
