@@ -25,28 +25,22 @@ h1{
     /* box-shadow: var(--green) 0px 5px 15px; */
     border-radius: 15px;
     padding: 70px 0 70px 0;
-    margin: 5% 200px 0 200px;
+    margin: 0 200px 0 200px;
     background-color: var(--main);
-
 }
 
-#text-box{
-    margin: auto;
-    width: 800px;
+#searchBox{
     display: flex;
-    justify-content: space-between;
-    flex-direction: row;
-    /* background-color: white; */
-    padding: 20px;
-    border-radius: 45px;
+    flex-direction: column;
 }
 
 .textfield{
-    margin: auto;
-    width: 300px;
+    width: 400px;
     height: 50px;
     border: 1px solid var(--green);
     border-radius: 30px;
+    margin-bottom: 30px;
+    padding: 0 30px;
 }
 
 #arrow{
@@ -57,8 +51,64 @@ h1{
     color: white;
 }
 
-#play-box{
-    margin-top: 100px;
+.searchBtn{
+    background-color: var(--main);
+    color: var(--green);
+    margin: auto;
+    margin-top: 50px;
+    padding: 0 20px;
+    cursor: pointer;
+    width: 400px;
+    font-size: 50px;
+    border: 3px solid var(--green);
+    border-radius: 5px;
+    font-family: 'DM Sans', sans-serif;
+}
+
+.headline{
+    color: white;
+    padding: 20px;
+}
+
+#playlistResult{
+    background-color: white;
+    margin: auto;
+}
+
+#playlist{
+    padding: 5px 20px;
+}
+
+.suggestionsLinks{
+    background-color: white;
+    width: 300px;
+    margin: auto;
+    border-radius: 2px;
+}
+
+.suggestion{
+    color: var(--green);
+    padding: 10px;
+    border-bottom: 1px solid black;
+    cursor: pointer;
+}
+
+.suggestion:hover{
+    color: gray;
+}
+
+#leftInput{
+    margin: auto;
     display: flex;
-    justify-content: space-around;
+    flex-direction: column;
+}
+
+#rightInput{
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+}
+
+#searchDiv{
+    margin: auto;
 }
