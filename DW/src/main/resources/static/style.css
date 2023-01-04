@@ -8,6 +8,13 @@ body{
     font-family: 'DM Sans', sans-serif;
 }
 
+#searchBox > p{
+    font-size: 30px;
+    display: flex;
+    color: var(--green);
+    justify-content: center;
+}
+
 header{
     display: flex;
     padding: 10px;

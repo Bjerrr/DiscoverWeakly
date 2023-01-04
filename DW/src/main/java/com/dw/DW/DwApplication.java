@@ -136,7 +136,7 @@ public class DwApplication {
 	}
 
 	@GetMapping("/playlist")
-	public String playlist(@RequestParam(value = "origin", defaultValue = "Malmö") String origin, @RequestParam(value = "destination", defaultValue = "Hässleholm") String destination) {
+	public String playlist(@RequestParam(value = "origin", defaultValue = "") String origin, @RequestParam(value = "destination", defaultValue = "") String destination) {
 		try {
 			String rawJson = fetchTrip.getTrip(origin, destination);
 			JsonTripRoot jsonRoot = new Gson().fromJson(rawJson, JsonTripRoot.class);
