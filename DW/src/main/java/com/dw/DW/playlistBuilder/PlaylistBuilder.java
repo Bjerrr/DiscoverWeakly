@@ -1,12 +1,16 @@
 package com.dw.DW.playlistBuilder;
 
+import com.dw.DW.GENERATED_POJOS.Recommendations.RecommendationsRoot;
+import com.dw.DW.GENERATED_POJOS.Recommendations.Track;
+import com.dw.DW.playlistBuilder.json_model.PrettyTrack;
+import com.google.gson.Gson;
+
 import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
-import java.util.concurrent.TimeUnit;
 
 public class PlaylistBuilder {
     private static List<String> playlist = new ArrayList<>();
@@ -61,6 +65,55 @@ public class PlaylistBuilder {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    public ArrayList<PrettyTrack> getPlaylist(int desiredDuration_ms) throws IOException {
+
+        Gson gson = new Gson();
+        RecommendationsRoot jsonObject = gson.fromJson(getJsonResponseReader(), RecommendationsRoot.class);
+        if(jsonObject == null)
+            return null;
+
+        int totalDuration = 0;
+        ArrayList<PrettyTrack> tracks = new ArrayList<>();
+        for (Track t : jsonObject.getTracks()) {
+            PrettyTrack track = new PrettyTrack();
+            track.name = t.getName() + " by " + t.getArtists().get(0).getName();
+            track.uri = t.getUri();
+            track.url = t.getExternalUrls().getSpotify();
+
+            tracks.add(track);
+            totalDuration += t.getDurationMs();
+            if(totalDuration >= desiredDuration_ms)
+                break;
+        }
+
+        return tracks;
+    }
+
+    private Reader getJsonResponseReader() throws IOException {
+        token = tokenCreator.createToken();
+
+        String[] genres = getRandomGenres();
+        StringBuilder genreQuery = new StringBuilder(genres[0]);
+        for (int i = 1; i < 5; i++) {
+            genreQuery.append(",").append(genres[i]);
+        }
+
+        String urlString = "https://api.spotify.com/v1/recommendations?";
+        urlString += "?limit=5";
+        urlString += "&max_popularity=15";
+        urlString += "&target_popularity=0";
+        urlString += "&seed_genres=" + genreQuery;
+        urlString += "&market=SE";
+        urlString += "&access_token=" + token;
+
+        URL url = new URL(urlString);
+        HttpURLConnection con = (HttpURLConnection) url.openConnection();
+        con.setRequestProperty("accept", "application/json");
+        InputStream responseStream = con.getInputStream();
+
+        return new BufferedReader(new InputStreamReader(responseStream));
     }
 
     public String[] getRandomGenres() {

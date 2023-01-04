@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.io.IOException;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -135,23 +136,27 @@ public class DwApplication {
 		}
 	}
 
+	/* EXAMPLE JSON:
+		[ {
+			"name" : "\"マイペース\" by Desi",
+			"url" : "https://open.spotify.com/track/21J2S4LtikqShVwHkYfouh",
+			"uri" : "spotify:track:21J2S4LtikqShVwHkYfouh",
+		}, {
+			"name" : "\"Breed To Breathe\" by Napalm Death",
+			"url" : "https://open.spotify.com/track/2xmLu6vY7dlxUgpqzF2pCe",
+			"uri" : "spotify:track:2xmLu6vY7dlxUgpqzF2pCe",
+		} ]
+	 */
 	@GetMapping("/playlist")
-	public String playlist(@RequestParam(value = "origin", defaultValue = "Malmö") String origin, @RequestParam(value = "destination", defaultValue = "Hässleholm") String destination) {
+	public String playlist(@RequestParam(value = "duration_ms", defaultValue = "600000") int duration_ms) {
 		try {
-			String rawJson = fetchTrip.getTrip(origin, destination);
-			JsonTripRoot jsonRoot = new Gson().fromJson(rawJson, JsonTripRoot.class);
-
-			Trip trip = jsonRoot.getTrip().get(0);
-			String tripDeparture = trip.getOrigin().getTime();
-			String tripArrival = trip.getDestination().getTime();
-
 			ObjectMapper objectMapper = new ObjectMapper();
 			String json = null;
-			json = objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(playlistBuilder.createPlaylist(TimeCalculator.calculateTime(tripDeparture, tripArrival)));
+			json = objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(playlistBuilder.getPlaylist(duration_ms));
 
 			return json;
 
-		} catch (JsonProcessingException e) {
+		} catch (IOException e) {
 			throw new RuntimeException(e);
 		}
 	}

@@ -4,13 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2f79b5f2-3115-48a7-be0d-09cf4d97e2ba" name="Changes" comment="Added /htmlTest endpoint to reah test.html.&#10;From test.html you can swap between test and test_2 pages.">
-      <change afterPath="$PROJECT_DIR$/DW/src/main/java/com/dw/DW/fetchTrip/json_model/Leg.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DW/src/main/java/com/dw/DW/fetchTrip/json_model/PrettyTrip.java" afterDir="false" />
+    <list default="true" id="2f79b5f2-3115-48a7-be0d-09cf4d97e2ba" name="Changes" comment="/playlist now takes in duration_ms as a query parameter and returns a json list of PrettyTrack objects.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/DW/src/main/java/com/dw/DW/DwApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/DW/src/main/java/com/dw/DW/DwApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DW/src/main/java/com/dw/DW/playlistBuilder/TimeCalculator.java" beforeDir="false" afterPath="$PROJECT_DIR$/DW/src/main/java/com/dw/DW/playlistBuilder/TimeCalculator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DW/src/main/resources/static/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/DW/src/main/resources/static/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DW/src/main/java/com/dw/DW/playlistBuilder/PlaylistBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/DW/src/main/java/com/dw/DW/playlistBuilder/PlaylistBuilder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DW/src/main/java/com/dw/DW/playlistBuilder/json_model/PrettyTrack.java" beforeDir="false" afterPath="$PROJECT_DIR$/DW/src/main/java/com/dw/DW/playlistBuilder/json_model/PrettyTrack.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -25,12 +23,18 @@
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="PREVIOUS_COMMIT_AUTHORS">
+      <list>
+        <option value="Joel Eriksson Sinclair &lt;joeles76@gmail.com&gt;" />
+      </list>
+    </option>
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="html_routing" />
+        <entry key="$PROJECT_DIR$" value="json_from_endpoints" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="SIGN_OFF_COMMIT" value="true" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -49,19 +53,24 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/Joel/_IntelliJProjects/da109a/DiscoverWeakly/DW/src/main/resources/static&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "last_opened_file_path": "C:/Users/Joel/_IntelliJProjects/da109a/DiscoverWeakly/DW/src/main/resources/static",
+    "project.structure.last.edited": "Project",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "preferences.fileTypes"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\Joel\_IntelliJProjects\da109a\DiscoverWeakly\DW\src\main\resources\static" />
+    </key>
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="com.dw.DW.GENERATED_POJOS.Recommendations" />
     </key>
   </component>
   <component name="RunManager" selected="Application.DwApplication">
@@ -78,12 +87,12 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="FetchTrip" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.dw.DW.fetchTrip.FetchTrip" />
+    <configuration name="JSonParseTest" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.dw.DW.JSonParseTest" />
       <module name="DW" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.dw.DW.fetchTrip.json_model.*" />
+          <option name="PATTERN" value="com.dw.DW.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -91,8 +100,8 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="JSonParseTest" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.dw.DW.JSonParseTest" />
+    <configuration name="PojoGenerator" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.dw.DW.PojoGenerator" />
       <module name="DW" />
       <extension name="coverage">
         <pattern>
@@ -134,7 +143,7 @@
       <list>
         <item itemvalue="Application.DwApplication" />
         <item itemvalue="Application.JSonParseTest" />
-        <item itemvalue="Application.com.dw.DW.fetchTrip.FetchTrip" />
+        <item itemvalue="Application.PojoGenerator" />
         <item itemvalue="Application.StopLookup" />
         <item itemvalue="Application.SearchSuggestion" />
       </list>
@@ -156,7 +165,21 @@
       <option name="project" value="LOCAL" />
       <updated>1672651560577</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="/prettyTrip now returns json.&#10;index.html changed with reformatting, not sure if intended...">
+      <created>1672756196216</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1672756196217</updated>
+    </task>
+    <task id="LOCAL-00003" summary="/playlist now takes in duration_ms as a query parameter and returns a json list of PrettyTrack objects.">
+      <created>1672834934131</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1672834934131</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -170,7 +193,7 @@
                   <entry key="branch">
                     <value>
                       <list>
-                        <option value="json_from_endpoints" />
+                        <option value="playlist_builder_refactor" />
                       </list>
                     </value>
                   </entry>
@@ -181,6 +204,11 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="/prettyTrip now returns json.&#10;index.html changed with reformatting, not sure if intended..." />
+    <MESSAGE value="/playlist now takes in duration_ms as a query parameter and returns a json list of PrettyTrack objects." />
+    <option name="LAST_COMMIT_MESSAGE" value="/playlist now takes in duration_ms as a query parameter and returns a json list of PrettyTrack objects." />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/DiscoverWeakly$DemoApplication.ic" NAME="DemoApplication Coverage Results" MODIFIED="1671185971071" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">

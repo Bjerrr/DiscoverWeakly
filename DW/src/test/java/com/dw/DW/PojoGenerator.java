@@ -1,6 +1,5 @@
 package com.dw.DW;
 
-import com.dw.DW.fetchTrip.FetchTrip;
 import com.sun.codemodel.JCodeModel;
 import org.jsonschema2pojo.*;
 import org.jsonschema2pojo.rules.RuleFactory;
@@ -17,15 +16,15 @@ import java.net.URL;
  * To use gson all instances of "@JsonProperty(" must be replaced with "@SerializedName(".
  */
 public class PojoGenerator {
-    public static void main(String[] args) {
-        // GenerateTripClasses();
+    public static void main(String[] args) throws IOException {
+        //GenerateClasses();
     }
 
-    private static void GenerateTripClasses() {
-        String rawJson = new FetchTrip().getTrip("Hässleholm Centralstation", "Malmö Centralstation");
+    private static void GenerateClasses() throws IOException {
+        String rawJson = ""; //new PlaylistBuilder().getJsonResponse();
         File targetDirectory = new File("DW/src/test/java/");
         String packageName = "com.dw.DW.GENERATED_POJOS";
-        String className = "JsonTripRoot";
+        String className = "RecommendationsRoot";
 
         try {
             new PojoGenerator().generateClassFromRawJson(rawJson, targetDirectory, packageName, className);
