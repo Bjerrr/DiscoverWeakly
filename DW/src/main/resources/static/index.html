@@ -16,19 +16,36 @@
     <title>Discover Weakly</title>
 </head>
 <body>
-    <header>
-        <h1>Discover Weakly</h1>
-    </header>
-    <div id="container">
-        <form id="searchBox">
-            <label for="origin" class="prettyTrip-label">Resa från:</label>
-            <input type="text" class="textfield" placeholder="sök..." id="origin">
-            <label for="destination" class="prettyTrip-label">Resa till:</label>
-            <input type="text" class="textfield" placeholder="sök..." id="destination">
-            <button type="submit" id="search">Sök</button>
-        </form>
+<header>
+    <h1>Discover Weakly</h1>
+</header>
+
+<div id="container">
+    <form id="searchBox">
+        <div id="leftInput">
+            <label class="headline">Resa från:</label>
+            <input type="text" id="originCity" class="textfield" autocomplete="off">
+
+            <div id="suggestionsOrigin" class="suggestionsLinks"></div>
+        </div>
+        <div id="rightInput">
+            <label class="headline">Resa till:</label>
+            <input type="text" id="destinationCity" class="textfield" autocomplete="off">
+
+            <div id="suggestionsDestination" class="suggestionsLinks"></div>
+        </div>
+        <div id="searchDiv">
+            <input type="submit" value="Sök" class="searchBtn">
+        </div>
+    </form>
+
+    <div id="playlistResult">
+        <div class="results"></div>
     </div>
-    <ul id="playlist"></ul>
-    <script type="text/javascript" src="script.js"></script>
+
+</div>
+
+
+<script type="text/javascript" src="script.js"></script>
 </body>
 </html>
