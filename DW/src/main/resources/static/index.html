@@ -16,34 +16,37 @@
     <title>Discover Weakly</title>
 </head>
 <body>
-    <header>
-        <h1>Discover Weakly</h1>
-    </header>
-
-    <div id="container">
-        <form id="searchBox">
-            <div id="leftInput">
+<header>
+    <h1>Discover Weakly</h1>
+</header>
+<div id="loginDiv">
+    <button id="loginBtn">Close</button>
+</div>
+<div id="container">
+    <form id="searchBox">
+        <div id="leftInput">
             <label class="headline">Resa från:</label>
-            <input type="text" id="originCity" class="textfield">
+            <input type="text" id="originCity" class="textfield" autocomplete="off">
 
             <div id="suggestionsOrigin" class="suggestionsLinks"></div>
-            </div>
-            <div id="rightInput">
+        </div>
+        <div id="rightInput">
             <label class="headline">Resa till:</label>
-            <input type="text" id="destinationCity" class="textfield">
+            <input type="text" id="destinationCity" class="textfield" autocomplete="off">
 
             <div id="suggestionsDestination" class="suggestionsLinks"></div>
-            </div>
-            <div id="searchDiv">
-            <input type="submit" value="Sök" class="searchBtn">
-            </div>
-        </form>
-        <div id="playlistResult">
-            <ul id="playlist"></ul>
         </div>
+        <div id="searchDiv">
+            <input type="submit" value="Sök" class="searchBtn">
+        </div>
+    </form>
+
+    <div id="playlistResult">
+        <div class="results"></div>
     </div>
 
+</div>
 
-    <script type="text/javascript" src="script.js"></script>
+<script type="text/javascript" src="script.js"></script>
 </body>
 </html>

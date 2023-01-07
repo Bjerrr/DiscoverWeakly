@@ -27,12 +27,19 @@ h1{
     text-shadow: 1px 1px 4px var(--light);
 }
 
+h2{
+    font-size: 70px;
+    color: var(--main);
+    margin: auto;
+    text-shadow: 1px 1px 4px var(--light);
+}
+
 #container{
     box-shadow: var(--green) 0px 13px 27px -5px, var(--green) 0px 8px 16px -8px;
     /* box-shadow: var(--green) 0px 5px 15px; */
     border-radius: 15px;
     padding: 70px 0 70px 0;
-    margin: 0 200px 0 200px;
+    margin: 0 200px 200px 200px;
     background-color: var(--main);
 }
 
@@ -62,7 +69,8 @@ h1{
     background-color: var(--main);
     color: var(--green);
     margin: auto;
-    margin-top: 50px;
+    margin-top: 30px;
+    margin-bottom: 30px;
     padding: 0 20px;
     cursor: pointer;
     width: 400px;
@@ -82,13 +90,9 @@ h1{
     margin: auto;
 }
 
-#playlist{
-    padding: 5px 20px;
-}
-
 .suggestionsLinks{
     background-color: white;
-    width: 300px;
+    width: 400px;
     margin: auto;
     border-radius: 2px;
 }
@@ -118,4 +122,41 @@ h1{
 
 #searchDiv{
     margin: auto;
+}
+
+.results{
+    display: flex;
+    flex-direction: column;
+}
+
+.results> a{
+    padding: 10px 30px;
+    font-size: 17px;
+    text-decoration: none;
+    color: var(--green);
+}
+
+.results > a:hover{
+    color: black;
+}
+
+#loginDiv{
+    position: fixed; /* makes the div appear on top of all other content */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5); /* sets a translucent black background */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#loginBtn{
+  background: white;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  border-radius: 5px;
+  cursor: pointer;
 }
