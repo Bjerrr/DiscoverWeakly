@@ -13,14 +13,24 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.Gson;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatusCode;
+import org.springframework.http.ResponseEntity;
+import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.view.RedirectView;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.Reader;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.nio.charset.StandardCharsets;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Base64;
 import java.util.List;
 
 @SpringBootApplication
@@ -159,5 +169,90 @@ public class DwApplication {
 		} catch (IOException e) {
 			throw new RuntimeException(e);
 		}
+	}
+
+
+	////////////////////////////////////////
+	////////////////////////////////////////
+	////////////////////////////////////////
+	////////////////////////////////////////
+	////////////////////////////////////////
+	/// UGLY AUTHORIZATION TESTING STUFF ///
+	@GetMapping("/authorize_redirect")
+	public RedirectView authorize_redirect() {
+		String client_id = "0a2e6423d13d4cccad3591bc78c66d32";
+		String redirect_uri = "http://localhost:8080/";
+
+		// String state = generateRandomString(16);
+		// localStorage.setItem(stateKey, state);
+
+		String scope = "user-modify-playback-state";
+
+		String urlString = "https://accounts.spotify.com/authorize";
+		urlString += "?response_type=code";
+		urlString += "&client_id=" + client_id;
+		urlString += "&scope=" + scope;
+		urlString += "&redirect_uri=" + redirect_uri;
+
+		System.out.println(urlString);
+
+		return new RedirectView(urlString);
+	}
+
+	@PostMapping("/authorize")
+	public ResponseEntity<String> authorize_post(@RequestParam(value = "code") String auth_code) {
+		System.out.println("code recieved: ");
+
+		System.out.println(auth_code);
+		this.auth_code = auth_code;
+
+		// Here we should post authorize to SptofiyAPI to get the access_token!
+
+		String client_id = "0a2e6423d13d4cccad3591bc78c66d32";
+		String client_secret = "5d58dc8223054895b229a2189ad74705";
+		String redirect_uri = "http://localhost:8080/";
+
+		// String state = generateRandomString(16);
+		// localStorage.setItem(stateKey, state);
+
+		String urlString = "https://accounts.spotify.com/api/token";
+		urlString += "?grant_type=authorization_code";
+		urlString += "&code=" + auth_code;
+		urlString += "&redirect_uri=" + redirect_uri;
+
+		System.out.println(urlString);
+
+		try {
+			URL url = new URL(urlString);
+			HttpURLConnection con = (HttpURLConnection) url.openConnection();
+			con.setRequestMethod("POST");
+			con.setRequestProperty("Authorization", "Basic " + Base64.getEncoder().encodeToString(
+					(client_id + ":" + client_secret).getBytes(StandardCharsets.UTF_8)));
+			con.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
+
+			Reader streamReader = new InputStreamReader(con.getInputStream());
+			BufferedReader bufferedReader = new BufferedReader(streamReader);
+
+			StringBuilder content = new StringBuilder();
+			String output;
+			while ((output = bufferedReader.readLine()) != null) {
+				content.append(output);
+			}
+
+			System.out.println(content);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return new ResponseEntity<>(HttpStatusCode.valueOf(200));
+	}
+
+	String auth_code = "";
+
+	@GetMapping("/play_song")
+	public RedirectView playSong() {
+		// Build a spotify URL to a song..
+
+		return new RedirectView("https://open.spotify.com/track/6QsXsCZavZdUVJqOX8RwUY");
 	}
 }

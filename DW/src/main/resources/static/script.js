@@ -1,4 +1,5 @@
 $(document).ready(function() {
+/*
     $.ajax({
       url: "http://localhost:8080/playlist",
       contentType: "application/json",
@@ -17,4 +18,5 @@ $(document).ready(function() {
         console.error(error);
       }
     });
+*/
 });
