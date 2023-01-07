@@ -5,7 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2f79b5f2-3115-48a7-be0d-09cf4d97e2ba" name="Changes" comment="/playlist now takes in duration_ms as a query parameter and returns a json list of PrettyTrack objects.">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DW/src/main/resources/static/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/DW/src/main/resources/static/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/DW/src/main/resources/static/script.js" beforeDir="false" afterPath="$PROJECT_DIR$/DW/src/main/resources/static/script.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DW/src/main/resources/static/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/DW/src/main/resources/static/style.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

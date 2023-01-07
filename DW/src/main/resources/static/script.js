@@ -30,6 +30,9 @@ function getSuggestions(event) {
 
 
 $(document).ready(function() {
+    $('#loginBtn').click(function() {
+        $('#loginDiv').hide();
+      });
     $('#searchBox').on('submit', function(event) {
       event.preventDefault();
       getPlaylist();
