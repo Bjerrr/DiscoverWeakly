@@ -27,6 +27,14 @@ function getSuggestions(event) {
 }
 
 $(document).ready(function() {
+    $('#more-info-button').click(function() {
+      $('#more-info').toggle();
+    });
+
+    $('#close-button').click(function() {
+      $('#more-info').hide();
+    });
+
     $('#loginBtn').click(function() {
       window.location = 'http://localhost:8080/authorize_redirect';
     });
