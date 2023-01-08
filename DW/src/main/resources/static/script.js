@@ -2,8 +2,6 @@ function getSuggestions(event) {
 
   var query = $(event.target).val();
 
-  query = query[0].toUpperCase() + query.slice(1).toLowerCase();
-
   $.ajax({
     url: "http://localhost:8080/suggestion?query=" + query,
     contentType: "application/json",
@@ -27,7 +25,6 @@ function getSuggestions(event) {
     }
   });
 }
-
 
 $(document).ready(function() {
     $('#loginBtn').click(function() {
@@ -69,25 +66,61 @@ $(document).ready(function() {
     });
 });
 
-
+function toMilliseconds(timeString) {
+  var parts = timeString.split(':');
+  var hours = parseInt(parts[0]);
+  var minutes = parseInt(parts[1]);
+  var seconds = parseInt(parts[2]);
+  return (hours * 3600 + minutes * 60 + seconds) * 1000;
+}
 
 function getPlaylist() {
   var origin = $('#originCity').val();
   var destination = $('#destinationCity').val();
 
   $.ajax({
-    url: "http://localhost:8080/playlist?origin=" + origin + "&destination=" + destination,
+    url: "http://localhost:8080/prettyTrip?origin=" + origin + "&destination=" + destination,
     contentType: "application/json",
     dataType: 'json',
-    success: function(result){
-
-      $('.results').empty();
-        var header = $('<h2>').text('Din spellista');
-        $('.results').append(header);
-        result.forEach(function(item) {
-          var item = $('<a>').attr('href', item.url).attr('target', '_blank').text(item.name).addClass('result-item');
-          $('.results').append(item);
+    success: function(data){
+        console.log(data)
+        $('.tripInfo').empty();
+        $('.stops').empty();
+        var head = $('<h2>').text('Din Resa');
+        $('.tripInfo').append(head);
+        var trip = $('<p>').text('Från ' + data.origin + ' till ' + data.destination);
+        $('.tripInfo').append(trip);
+        var head2 = $('<p>').text('Byten:');
+        $('.tripInfo').append(head2);
+        var journey = data.journey
+        journey.forEach(function(item) {
+            var item = $('<p>').text('- ' + item.destination);
+            $('.tripInfo').append(item);
         });
+        var tripTime = $('<p>').text('Total restid: ' + data.travelTime);
+        $('.tripInfo').append(tripTime);
+
+        var duration = data.travelTime
+        var duration_ms = toMilliseconds(duration);
+
+          $.ajax({
+              url: "http://localhost:8080/playlist?duration_ms=" + duration_ms,
+              contentType: "application/json",
+              dataType: 'json',
+              success: function(result){
+                  console.log(result)
+                $('.results').empty();
+                  var header = $('<h2>').text('Din spellista');
+                  $('.results').append(header);
+                  result.forEach(function(item) {
+                    var item = $('<a>').attr('href', item.url).attr('target', '_blank').text(item.name).addClass('result-item');
+                    $('.results').append(item);
+                  });
+              },
+              error: function(error){
+                console.error(error);
+              }
+            });
     },
     error: function(error){
       console.error(error);
