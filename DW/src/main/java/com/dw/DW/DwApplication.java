@@ -2,28 +2,26 @@ package com.dw.DW;
 
 import com.dw.DW.GENERATED_POJOS.JsonTrip.JsonTripRoot;
 import com.dw.DW.GENERATED_POJOS.JsonTrip.Trip;
+import com.dw.DW.SpotifyOAuth.AccessTokenResponse;
 import com.dw.DW.fetchTrip.FetchTrip;
 import com.dw.DW.fetchTrip.json_model.Leg;
 import com.dw.DW.fetchTrip.json_model.PrettyTrip;
 import com.dw.DW.playlistBuilder.PlaylistBuilder;
 import com.dw.DW.playlistBuilder.TimeCalculator;
 import com.dw.DW.searchSuggestion.SearchSuggestion;
+
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.Gson;
+
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
-import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.Reader;
+import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
@@ -36,6 +34,7 @@ import java.util.List;
 @SpringBootApplication
 @RestController
 public class DwApplication {
+	public String access_token = "";
 
 	PlaylistBuilder playlistBuilder = new PlaylistBuilder();
 	FetchTrip fetchTrip = new FetchTrip();
@@ -162,7 +161,7 @@ public class DwApplication {
 		try {
 			ObjectMapper objectMapper = new ObjectMapper();
 			String json = null;
-			json = objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(playlistBuilder.getPlaylist(duration_ms));
+			json = objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(playlistBuilder.getPlaylist(duration_ms, access_token));
 
 			return json;
 
@@ -186,7 +185,15 @@ public class DwApplication {
 		// String state = generateRandomString(16);
 		// localStorage.setItem(stateKey, state);
 
-		String scope = "user-modify-playback-state";
+		String scope = "playlist-modify-private";
+		scope += "%20playlist-read-private";
+		scope += "%20playlist-modify-public";
+		scope += "%20playlist-read-collaborative";
+		scope += "%20user-read-private";
+		scope += "%20user-read-email";
+		scope += "%20user-library-modify";
+		scope += "%20user-library-read";
+
 
 		String urlString = "https://accounts.spotify.com/authorize";
 		urlString += "?response_type=code";
@@ -194,19 +201,18 @@ public class DwApplication {
 		urlString += "&scope=" + scope;
 		urlString += "&redirect_uri=" + redirect_uri;
 
-		System.out.println(urlString);
+		System.out.println("authorization_redirect: " + urlString);
 
 		return new RedirectView(urlString);
 	}
 
 	@PostMapping("/authorize")
 	public ResponseEntity<String> authorize_post(@RequestParam(value = "code") String auth_code) {
-		System.out.println("code recieved: ");
+		System.out.println("Authorization Code Recieved: ");
 
 		System.out.println(auth_code);
-		this.auth_code = auth_code;
 
-		// Here we should post authorize to SptofiyAPI to get the access_token!
+		// Here we should post authorize to SpotifyAPI to get the access_token!
 
 		String client_id = "0a2e6423d13d4cccad3591bc78c66d32";
 		String client_secret = "5d58dc8223054895b229a2189ad74705";
@@ -216,11 +222,13 @@ public class DwApplication {
 		// localStorage.setItem(stateKey, state);
 
 		String urlString = "https://accounts.spotify.com/api/token";
-		urlString += "?grant_type=authorization_code";
-		urlString += "&code=" + auth_code;
-		urlString += "&redirect_uri=" + redirect_uri;
 
-		System.out.println(urlString);
+		String requestBody = "grant_type=authorization_code";
+		requestBody += "&code=" + auth_code;
+		requestBody += "&redirect_uri=" + redirect_uri;
+
+		System.out.println("URL to retrieve access token from: " + urlString);
+		System.out.println("RequestBody: " + requestBody);
 
 		try {
 			URL url = new URL(urlString);
@@ -228,31 +236,43 @@ public class DwApplication {
 			con.setRequestMethod("POST");
 			con.setRequestProperty("Authorization", "Basic " + Base64.getEncoder().encodeToString(
 					(client_id + ":" + client_secret).getBytes(StandardCharsets.UTF_8)));
-			con.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
+			con.setRequestProperty("Content-type", "application/x-www-form-urlencoded");
 
-			Reader streamReader = new InputStreamReader(con.getInputStream());
-			BufferedReader bufferedReader = new BufferedReader(streamReader);
+			con.setDoOutput(true);
+			con.getOutputStream().write(requestBody.getBytes(StandardCharsets.UTF_8));
+			con.getOutputStream().flush();
+
+			int http_status = con.getResponseCode();
+			System.out.println(http_status);
+
+			InputStream inputStream = null;
+			if(http_status < 299) {
+				inputStream = con.getInputStream();
+			} else {
+				inputStream = con.getErrorStream();
+			}
+			BufferedReader contentReader = new BufferedReader(new InputStreamReader(inputStream));
 
 			StringBuilder content = new StringBuilder();
 			String output;
-			while ((output = bufferedReader.readLine()) != null) {
+			while ((output = contentReader.readLine()) != null) {
 				content.append(output);
 			}
 
-			System.out.println(content);
+			// Save the access token
+			System.out.println(content); //access token: .. bearer: ..
+			AccessTokenResponse response = new Gson().fromJson(content.toString(), AccessTokenResponse.class);
+			access_token = response.access_token;
+
+			// Set up token refresh stuff!
+			// new TokenRefresher();
+
+			return new ResponseEntity<>(HttpStatusCode.valueOf(http_status));
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 
-		return new ResponseEntity<>(HttpStatusCode.valueOf(200));
-	}
-
-	String auth_code = "";
-
-	@GetMapping("/play_song")
-	public RedirectView playSong() {
-		// Build a spotify URL to a song..
-
-		return new RedirectView("https://open.spotify.com/track/6QsXsCZavZdUVJqOX8RwUY");
+		return new ResponseEntity<>(HttpStatusCode.valueOf(999));
 	}
 }

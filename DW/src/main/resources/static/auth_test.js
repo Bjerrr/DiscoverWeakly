@@ -14,7 +14,7 @@ $(document).ready(function() {
 
               success: function(result){
                 console.log(result)
-                window.alert("success! - here we should update html stuff, hide the login button..");
+                //window.alert("success! - here we should update html stuff, hide the login button..");
               },
               error: function(error){
                 console.error(error);
