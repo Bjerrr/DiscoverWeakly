@@ -5,13 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2f79b5f2-3115-48a7-be0d-09cf4d97e2ba" name="Changes" comment="Gå till localhost/authorize_redirect för att påbörja testet">
-      <change afterPath="$PROJECT_DIR$/DW/src/main/java/com/dw/DW/SpotifyOAuth/AccessTokenResponse.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DW/src/main/java/com/dw/DW/SpotifyOAuth/TokenRefresher.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DW/src/main/java/com/dw/DW/DwApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/DW/src/main/java/com/dw/DW/DwApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DW/src/main/java/com/dw/DW/playlistBuilder/PlaylistBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/DW/src/main/java/com/dw/DW/playlistBuilder/PlaylistBuilder.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/DW/src/main/resources/static/auth_test.js" beforeDir="false" afterPath="$PROJECT_DIR$/DW/src/main/resources/static/auth_test.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DW/src/main/resources/static/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/DW/src/main/resources/static/index.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
