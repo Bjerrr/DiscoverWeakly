@@ -160,10 +160,8 @@ public class DwApplication {
 	public String playlist(@RequestParam(value = "duration_ms", defaultValue = "600000") int duration_ms) {
 		try {
 			ObjectMapper objectMapper = new ObjectMapper();
-			String json = null;
-			json = objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(playlistBuilder.getPlaylist(duration_ms, access_token));
 
-			return json;
+			return objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(playlistBuilder.getPlaylist(duration_ms, access_token));
 
 		} catch (IOException e) {
 			throw new RuntimeException(e);
@@ -245,7 +243,7 @@ public class DwApplication {
 			int http_status = con.getResponseCode();
 			System.out.println(http_status);
 
-			InputStream inputStream = null;
+			InputStream inputStream;
 			if(http_status < 299) {
 				inputStream = con.getInputStream();
 			} else {
@@ -257,6 +255,10 @@ public class DwApplication {
 			String output;
 			while ((output = contentReader.readLine()) != null) {
 				content.append(output);
+			}
+
+			if (http_status > 299) {
+				return new ResponseEntity<>(HttpStatusCode.valueOf(http_status));
 			}
 
 			// Save the access token
