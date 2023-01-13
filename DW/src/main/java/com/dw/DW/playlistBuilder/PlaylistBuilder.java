@@ -48,7 +48,7 @@ public class PlaylistBuilder {
 
         // We should make a playlist!
         String user_id = getUserId(access_token);
-        if(user_id != null && !user_id.equals("")) {
+        if(user_id == null || user_id.equals("")) {
             return tracks;
         }
         String playListId = createSpotifyPlaylist(access_token, user_id);
